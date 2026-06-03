@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Recommender</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #38bdf8, #818cf8);
+            --border-color: #334155;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .wrapper {
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3);
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid var(--border-color);
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Container for the pill checkboxes */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 2rem;
+        }
+
+        /* Hide the ugly default checkbox */
+        .skill-option input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* Style the label to look like a premium button/pill */
+        .skill-option {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .skill-name {
+            display: block;
+            padding: 10px 18px;
+            background-color: #111827;
+            border: 1px solid var(--border-color);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all 0.25s ease;
+            user-select: none;
+        }
+
+        /* Hover effect */
+        .skill-option:hover .skill-name {
+            border-color: #64748b;
+            color: var(--text-main);
+            transform: translateY(-1px);
+        }
+
+        /* Checked state - magical glow and color shift */
+        .skill-option input[type="checkbox"]:checked + .skill-name {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: #38bdf8;
+            color: #38bdf8;
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+        }
+
+        /* The Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent-gradient);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 12px rgba(129, 140, 248, 0.3);
+        }
+
+        .submit-btn:hover {
+            opacity: 0.95;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper">
+        <h2>What are your skills?</h2>
+        <p>Select all that apply to find your ideal career domain.</p>
+
+        <form action="/predict" method="post">
+            <div class="skills-grid">
+                <div class="skills-grid">
+
+    <label class="skill-option">
+        <input type="checkbox" name="python">
+        <span class="skill-name">Python</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="sql">
+        <span class="skill-name">SQL</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="ml">
+        <span class="skill-name">Machine Learning</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="deeplearning">
+        <span class="skill-name">Deep Learning</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="statistics">
+        <span class="skill-name">Statistics</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="linux">
+        <span class="skill-name">Linux</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="networking">
+        <span class="skill-name">Networking</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="docker">
+        <span class="skill-name">Docker</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="git">
+        <span class="skill-name">Git</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="html">
+        <span class="skill-name">HTML</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="css">
+        <span class="skill-name">CSS</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="javascript">
+        <span class="skill-name">JavaScript</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="react">
+        <span class="skill-name">React</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="cloud">
+        <span class="skill-name">Cloud</span>
+    </label>
+
+    <label class="skill-option">
+        <input type="checkbox" name="aws">
+        <span class="skill-name">AWS</span>
+    </label>
+
+</div>
+
+            </div>
+
+            <button type="submit" class="submit-btn">
+                Recommend Domain
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>
